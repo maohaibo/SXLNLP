@@ -1,0 +1,12 @@
+vocab_size*hidden_size +  #word embedding
+512*hidden_size +  #position embedding
+2*hidden_size   +  # type embedding
+hidden_size + hidden_size + # layernorm 的w + b 
+
+(hidden_size*hidden_size*3 + #三次Q K V 
+hidden_size*hidden_size + hidden_size + # attention后的第一个线性层的w+b
+hidden_size + hidden_size + # layernorm 的w + b 
+intermediate_size*hidden_size+intermediate_size + hidden_size*intermediate_size+ hidden_size + # output=Liner(gelu(Liner(x)))
+hidden_size + hidden_size # layernorm 的w + b 
+)*num_hidden_layers  +       #*attention层数
+hidden_size + hidden_size +hidden_size #pooler
